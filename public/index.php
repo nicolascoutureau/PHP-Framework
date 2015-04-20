@@ -8,6 +8,8 @@
 
 require_once '../vendor/autoload.php';
 
-var_dump(\App\app\config::getInstance()->get('db_name'));
+$app = \App\app\App::getInstance();
+
+var_dump($app->getTable('user')->all());
 
 echo 'ok';
