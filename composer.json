@@ -1,0 +1,10 @@
+{
+    "name": "sharewood/site",
+    "authors": [
+        {
+            "name": "Nicolas Coutureau",
+            "email": "nicolas.coutureau@gmail.com"
+        }
+    ],
+    "require": {}
+}
