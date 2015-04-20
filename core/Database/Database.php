@@ -6,7 +6,7 @@
  * Time: 20:48
  */
 
-namespace App\app\Database;
+namespace App\core\Database;
 
 
 class Database {

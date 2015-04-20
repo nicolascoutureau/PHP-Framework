@@ -6,9 +6,11 @@
  * Time: 17:39
  */
 
-namespace App\app;
+namespace App\App;
 
-use App\app\Database\Database;
+
+use App\core\config;
+use App\core\Database\Database;
 
 class App {
 
@@ -24,6 +26,11 @@ class App {
         return self::$_instance;
     }
 
+    public static function load(){
+        session_start();
+        require_once '../vendor/autoload.php';
+    }
+
     public function getTable($name)
     {
         $class_name = '\App\app\Table\\'.ucfirst($name) . 'Table';
@@ -33,7 +40,7 @@ class App {
     public function getDb()
     {
         if(is_null($this->db_instance)){
-            $config = config::getInstance();
+            $config = Config::getInstance();
             $this->db_instance = new Database($config->get('db_name'),$config->get('db_user'),$config->get('db_password'),$config->get('db_host'));
         }
 

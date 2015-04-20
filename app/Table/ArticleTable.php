@@ -8,6 +8,7 @@
 
 namespace App\app\Table;
 
+use App\core\Table\Table;
 
 class ArticleTable extends Table{
 

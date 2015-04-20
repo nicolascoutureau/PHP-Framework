@@ -6,10 +6,10 @@
  * Time: 17:16
  */
 
-namespace App\app;
+namespace App\core;
 
 
-class config{
+class Config{
 
     private $settings = [];
     private static $_instance;

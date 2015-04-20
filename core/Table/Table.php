@@ -6,9 +6,9 @@
  * Time: 17:36
  */
 
-namespace App\app\Table;
+namespace App\Core\Table;
 
-use App\app\Database\Database;
+use App\Core\Database\Database;
 
 class Table {
 
