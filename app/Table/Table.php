@@ -24,6 +24,6 @@ class Table {
     }
 
     public function all(){
-        return 'all';
+        return $this->db->query("SELECT * FROM $this->table");
     }
 } 

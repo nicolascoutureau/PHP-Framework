@@ -10,6 +10,6 @@ require_once '../vendor/autoload.php';
 
 $app = \App\app\App::getInstance();
 
-var_dump($app->getTable('user')->all());
-
-echo 'ok';
+echo '<pre>';
+var_dump($app->getTable('article')->all());
+echo '</pre>';

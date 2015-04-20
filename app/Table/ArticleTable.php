@@ -9,6 +9,6 @@
 namespace App\app\Table;
 
 
-class PostTable extends Table{
+class ArticleTable extends Table{
 
 } 

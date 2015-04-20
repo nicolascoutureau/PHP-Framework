@@ -37,7 +37,6 @@ class App {
             $this->db_instance = new Database($config->get('db_name'),$config->get('db_user'),$config->get('db_password'),$config->get('db_host'));
         }
 
-
         return $this->db_instance;
     }
 
