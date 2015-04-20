@@ -8,6 +8,6 @@
 
 require_once '../vendor/autoload.php';
 
-new \Project\app\test();
+var_dump(\App\app\config::getInstance()->get('db_name'));
 
 echo 'ok';
