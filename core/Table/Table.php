@@ -24,7 +24,7 @@ class Table {
     }
 
     public function all(){
-        return $this->query("SELECT * FROM $this->table");
+        return $this->query("SELECT * FROM {$this->table}");
     }
 
     public function findById($id){
@@ -79,6 +79,6 @@ class Table {
 
     public function deleteById($id)
     {
-        $this->query("DELETE FROM {$this->table} WHERE id =?", [$id]);
+        return $this->query("DELETE FROM {$this->table} WHERE id =?", [$id]);
     }
 } 

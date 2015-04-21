@@ -12,7 +12,7 @@ if(!empty($_POST)){
         'categorie_id' => $_POST['categorie_id'],
     ]);
     if($result){
-        header('Location: admin.php?page=article.edit&id='.$app->getDb()->lastInsertId() );
+        header('Location: admin.php');
         $message = "L'article a bien été ajouté!";
     }
 }

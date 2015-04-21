@@ -17,6 +17,7 @@ $articles = App::getInstance()->getTable('article')->all();
     <tr>
         <td>Id</td>
         <td>Titre</td>
+        <td>Catégorie</td>
         <td>Actions</td>
     </tr>
     </thead>
@@ -25,6 +26,7 @@ $articles = App::getInstance()->getTable('article')->all();
             <tr>
                 <td><?= $article->id ?></td>
                 <td><?= $article->titre ?></td>
+                <td><?= $article->categorie ?></td>
                 <td>
                     <a class="btn btn-primary" href="?page=article.edit&id=<?= $article->id ?>">Éditer</a>
 

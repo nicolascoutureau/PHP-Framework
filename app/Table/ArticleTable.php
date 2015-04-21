@@ -51,4 +51,12 @@ class ArticleTable extends Table{
 
     }
 
+    public function all(){
+        return $this->query("
+            SELECT article.id, article.titre, article.contenu, article.created_at, categorie.nom as categorie
+            FROM {$this->table}
+            LEFT JOIN categorie ON categorie.id = article.categorie_id
+        ");
+    }
+
 } 
