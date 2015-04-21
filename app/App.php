@@ -47,5 +47,11 @@ class App {
         return $this->db_instance;
     }
 
+    public function notFound()
+    {
+        header('HTTP/1.0 404 Not Found');
+        header('Location:index.php?page=404');
+    }
+
 
 } 

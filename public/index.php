@@ -6,10 +6,19 @@
  * Time: 16:41
  */
 
+define('ROOT', dirname(__DIR__));
+require_once ROOT . '/app/App.php';
 
-/*\App\App\App::load();*/
-$app = \App\app\App::getInstance();
+\App\App\App::load();
 
-echo '<pre>';
-var_dump($app->getTable('article')->all());
-echo '</pre>';
+if(isset($_GET['page'])){
+    $page = $_GET['page'];
+}else{
+    $page = 'articles';
+}
+
+if($page === 'articles'){
+    require ROOT.'/pages/article/index.php';
+} elseif ($page === 'article'){
+    require ROOT.'/pages/article/single.php';
+}

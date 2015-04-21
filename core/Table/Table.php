@@ -24,6 +24,27 @@ class Table {
     }
 
     public function all(){
-        return $this->db->query("SELECT * FROM $this->table");
+        return $this->query("SELECT * FROM $this->table");
+    }
+
+    public function findById($id){
+        return $this->query("SELECT * FROM {$this->table} WHERE id = ?",[$id], true);
+    }
+
+    public function query($statement, $attributes = null, $one = false){
+        if($attributes){
+            return $this->db->prepare(
+                $statement,
+                $attributes,
+                str_replace('Table', 'Entity',get_class($this)),
+                $one
+            );
+        } else{
+            return $this->db->query(
+                $statement,
+                str_replace('Table', 'Entity',get_class($this)),
+                $one
+            );
+        }
     }
 } 
