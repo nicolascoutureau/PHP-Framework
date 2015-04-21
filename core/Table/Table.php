@@ -12,7 +12,7 @@ use App\Core\Database\Database;
 
 class Table {
 
-    private $table;
+    protected $table;
     private $db;
 
     public function __construct(Database $db){

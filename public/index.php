@@ -21,4 +21,8 @@ if($page === 'articles'){
     require ROOT.'/pages/article/index.php';
 } elseif ($page === 'article'){
     require ROOT.'/pages/article/single.php';
+} elseif ($page === 'categorie'){
+    require ROOT.'/pages/article/categorie.php';
+} elseif( $page === '404'){
+    require ROOT. '/pages/404.php';
 }

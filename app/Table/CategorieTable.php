@@ -10,7 +10,7 @@ namespace App\app\Table;
 
 use App\core\Table\Table;
 
-class ArticleTable extends Table{
+class CategorieTable extends Table{
 
     /**
      * Récupere les derniers articles
@@ -29,23 +29,12 @@ class ArticleTable extends Table{
 
     public function findById($id){
         return $this->query("
-            SELECT article.id, article.titre, article.contenu, article.created_at, categorie.nom As categorie
-            FROM article
-            LEFT JOIN categorie ON article.categorie_id = categorie.id
-            WHERE article.id = ?
+            SELECT *
+            FROM categorie
+            WHERE id = ?
             ",
             [$id],
             true
-        );
-    }
-
-    public function findLastByCategoryId($id){
-        return $this->query("
-            SELECT article.id, article.titre, article.contenu, article.created_at
-            FROM article
-            LEFT JOIN categorie ON article.categorie_id = ?
-            ",
-            [$id]
         );
     }
 
