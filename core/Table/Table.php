@@ -62,4 +62,23 @@ class Table {
         return $this->query("UPDATE {$this->table} SET $sql_part WHERE id=?", $attributes);
 
     }
+
+    public function create($fields){
+        $sql_parts = [];
+        $attributes = [];
+
+        foreach($fields as $field => $value){
+            $sql_parts[] = "$field = ?";
+            $attributes[] = $value;
+        }
+        $sql_part = implode(',',$sql_parts);
+
+        return $this->query("INSERT INTO {$this->table} SET $sql_part", $attributes);
+
+    }
+
+    public function deleteById($id)
+    {
+        $this->query("DELETE FROM {$this->table} WHERE id =?", [$id]);
+    }
 } 

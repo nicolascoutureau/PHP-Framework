@@ -43,10 +43,12 @@ class ArticleTable extends Table{
         return $this->query("
             SELECT article.id, article.titre, article.contenu, article.created_at
             FROM article
-            LEFT JOIN categorie ON article.categorie_id = ?
+            LEFT JOIN categorie ON article.categorie_id = categorie.id
+            WHERE categorie.id = ?
             ",
             [$id]
         );
+
     }
 
 } 

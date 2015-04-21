@@ -34,6 +34,10 @@ ob_start();
         require ROOT.'/pages/admin/article/index.php';
     } elseif ($page === 'article.edit'){
         require ROOT.'/pages/admin/article/edit.php';
+    } elseif ($page === 'article.new'){
+        require ROOT.'/pages/admin/article/new.php';
+    } elseif ($page === 'article.delete'){
+        require ROOT.'/pages/admin/article/delete.php';
     } elseif ($page === 'categorie'){
         require ROOT.'/pages/admin/article/categorie.php';
     } elseif( $page === '404'){

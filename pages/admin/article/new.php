@@ -4,39 +4,39 @@ use App\App\App;
 
 $app = App::getInstance();
 $articleTable = $app->getTable('article');
+
 if(!empty($_POST)){
-    $result = $articleTable->updateById($_GET['id'], [
+    $result = $articleTable->create([
         'titre' => $_POST['titre'],
         'contenu' => $_POST['contenu'],
         'categorie_id' => $_POST['categorie_id'],
     ]);
-
     if($result){
-        $message = "L'article a bien été modifié!";
+        header('Location: admin.php?page=article.edit&id='.$app->getDb()->lastInsertId() );
+        $message = "L'article a bien été ajouté!";
     }
 }
 
-$article = $articleTable->findById($_GET['id']);
 $categories = $app->getTable('categorie')->all();
 
 ?>
 
-<h2>Modifier l'article</h2>
+<h2>Ajouter un article</h2>
 
 <form method="POST">
     <div class="form-group">
         <label for="titre">Titre</label>
-        <input  type="text" name="titre" value="<?= $article->titre ?>" class="form-control"/>
+        <input  type="text" name="titre" class="form-control"/>
     </div>
     <div class="form-group">
         <label for="contenu">Contenu</label>
-        <textarea name="contenu" id="" cols="30" rows="10" class="form-control"><?= $article->contenu ?></textarea>
+        <textarea name="contenu" id="" cols="30" rows="10" class="form-control"></textarea>
     </div>
     <div class="form-group">
         <label for="categorie">Categorie</label>
         <select class="form-control" name="categorie_id">
             <?php foreach($categories as $categorie): ?>
-                <option <?= ($categorie->nom === $article->categorie)? 'selected' : ''?> value="<?= $categorie->id ?>"><?= $categorie->nom ?></option>
+                <option value="<?= $categorie->id ?>"><?= $categorie->nom ?></option>
             <?php endforeach ?>
         </select>
     </div>
