@@ -25,4 +25,6 @@ if($page === 'articles'){
     require ROOT.'/pages/article/categorie.php';
 } elseif( $page === '404'){
     require ROOT. '/pages/404.php';
+} elseif( $page === 'login'){
+    require ROOT. '/pages/user/login.php';
 }
