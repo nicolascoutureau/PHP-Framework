@@ -21,6 +21,11 @@ if(isset($_GET['page'])){
     $page = 'articles';
 }
 
+$output = array();
+$url = explode('/', $_SERVER['REQUEST_URI']);
+
+var_dump($url);
+
 if($page === 'articles'){
     $controller = new ArticleController();
     $controller->index();
