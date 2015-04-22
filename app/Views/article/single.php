@@ -6,6 +6,8 @@
  * Time: 11:23
  */
 
+echo '<pre>';
 var_dump($article);
+echo '</pre>';
 
 ?>

@@ -21,12 +21,23 @@ if(isset($_GET['page'])){
     $page = 'articles';
 }
 
-$output = array();
-$url = explode('/', $_SERVER['REQUEST_URI']);
+$parts = explode('/',$_SERVER['REQUEST_URI']);
+$ctrl = 'App\app\Controller\\'.ucfirst($parts[1]).'Controller';
+$mthd = $parts[2];
+$args = [];
 
-var_dump($url);
+for($i=3; $i<count($parts); $i++){
+    $args[] = $parts[$i];
+}
 
-if($page === 'articles'){
+var_dump($ctrl,$mthd,$args);
+
+$controller = new $ctrl();
+$controller->$mthd($args[0]);
+
+
+
+/*if($page === 'articles'){
     $controller = new ArticleController();
     $controller->index();
 } elseif ($page === 'article'){
@@ -50,4 +61,4 @@ if($page === 'articles'){
 } elseif ($page === 'login'){
     $controller = new UserController();
     $controller->login();
-}
+}*/

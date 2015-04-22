@@ -43,10 +43,10 @@ class ArticleController extends BaseController{
         );
     }
 
-    public function show()
+    public function show($id)
     {
         $app = APP::getInstance();
-        $article = $app->getTable('article')->findById($_GET['id']);
+        $article = $app->getTable('article')->findById($id);
         if($article === false){
             $this->notFound();
         }
