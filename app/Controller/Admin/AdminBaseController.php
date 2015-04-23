@@ -25,7 +25,7 @@ class AdminBaseController extends Controller {
         $auth = new DBAuth($app->getDb());
 
         if(!$auth->logged()) {
-            $this->forbidden();
+            header('Location: /user/login');
         }
     }
 

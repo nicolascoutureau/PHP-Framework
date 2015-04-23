@@ -15,7 +15,7 @@ class ArticleEntity extends Entity{
 
     public function getUrl()
     {
-        return "index.php?page=article&id=$this->id";
+        return "/article/show/$this->id";
     }
 
     public function getExtrait($length=100)

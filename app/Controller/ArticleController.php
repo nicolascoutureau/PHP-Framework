@@ -26,16 +26,16 @@ class ArticleController extends BaseController{
         );
     }
 
-    public function categories()
+    public function categorie($id)
     {
         $app = App::getInstance();
 
-        $categorie = $app->getTable('categorie')->findById($_GET['id']);
+        $categorie = $app->getTable('categorie')->findById($id);
         if(!$categorie){
             $this->notFound();
         }
 
-        $articles = $app->getTable('article')->findLastByCategoryId($_GET['id']);
+        $articles = $app->getTable('article')->findLastByCategoryId($id);
 
         $this->render(
             'article.categorie',

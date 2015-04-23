@@ -15,6 +15,6 @@ class CategorieEntity extends Entity{
 
     public function getUrl()
     {
-        return "index.php?page=categorie&id=$this->id";
+        return "/article/categorie/$this->id";
     }
 }

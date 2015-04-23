@@ -32,15 +32,14 @@ class Controller {
     protected function notFound()
     {
         header('HTTP/1.0 404 Not Found');
-        header('Location:index.php?page=404');
+        /*header('Location:index.php?page=404');*/
         die();
     }
 
     protected function forbidden()
     {
         header('HTTP/1.0 403 Forbidden');
-        header('Location:index.php?page=login');
-        die();
+        header('Location:user/login');
     }
 
 } 
