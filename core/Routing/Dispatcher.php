@@ -41,9 +41,6 @@ class Dispatcher {
             }
         }
 
-        var_dump($ctrl,$mthd,$args);
-
-
         call_user_func_array([new $ctrl(), $mthd], $args);
 
     }

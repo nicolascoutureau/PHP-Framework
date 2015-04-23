@@ -22,17 +22,29 @@ class UserController extends BaseController {
 
     public function login(){
         if(!empty($_POST)){
-            $db = App::getInstance()->getDb();
-            $auth = new DBAuth($db);
+            $app = App::getInstance();
+            $auth = new DBAuth($app->getDb(), $app->getSession());
 
             if($auth->login($_POST['username'], $_POST['password'])){
-                header('Location: index.php?page=admin.article.index');
+                $app->getFlash()->set('Bienvenue '. $_POST['username']);
+                header('Location: /admin');
+                die();
             }else{
-                $message = 'Accès interdit';
+                $app->getFlash()->set('Mauvais Login ou mot de passe', 'danger');
             }
         }
 
         $this->render('user.login', compact('message'));
+    }
+
+    public function logout()
+    {
+        $app = App::getInstance();
+        $app->getSession()->delete('auth');
+        $app->getFlash()->set('A bientot!');
+
+        header('Location: /');
+        die();
     }
     
 } 

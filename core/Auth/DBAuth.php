@@ -10,25 +10,23 @@ namespace App\core\Auth;
 
 
 use App\core\Database\Database;
+use App\core\Session\SessionInterface;
 
 class DBAuth {
 
     private $db;
+    private $session;
 
-    public function __construct(Database $db){
+    public function __construct(Database $db, SessionInterface $session){
         $this->db = $db;
+        $this->session = $session;
     }
 
-    /**
-     * @param $username
-     * @param $password
-     * @return boolean
-     */
     public function login($username,$password){
         $user = $this->db->prepare('SELECT * FROM user WHERE username = ?', [$username], null, true);
         if($user){
             if($user->password === sha1($password)){
-                $_SESSION['auth'] = $user->id;
+                $this->session->set('auth', $user->id);
                 return true;
             };
         }
@@ -36,17 +34,33 @@ class DBAuth {
         return false;
     }
 
+    public function logout()
+    {
+        $this->session->delete('auth');
+    }
+
     public function logged(){
-        return isset($_SESSION['auth']);
+        return !is_null($this->session->get('auth'));
     }
 
     public function getUserId()
     {
         if($this->logged()){
-            return $_SESSION['auth'];
+            return $this->session->get('auth');
         }
 
         return false;
     }
+
+    public function getUser()
+    {
+        if($this->logged()){
+            $user = $this->db->prepare('SELECT * FROM user WHERE id = ?', [$this->session->get('auth')], null, true);
+            var_dump($user);
+        }
+
+        return false;
+    }
+
 
 } 

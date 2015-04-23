@@ -9,11 +9,11 @@
 namespace App\app\Controller;
 
 
-class IndexController {
+class IndexController extends BaseController {
 
     public function index()
     {
-        die('HomePage');
+        $this->render('index.index');
     }
 
 } 

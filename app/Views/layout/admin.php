@@ -52,7 +52,7 @@
                         <li><a href="#">Another action</a></li>
                         <li><a href="#">Something else here</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
+                        <li><a href="/user/logout">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -60,10 +60,18 @@
     </div><!-- /.container-fluid -->
 </nav>
 
-<?php if(isset($message) && !empty($message)): ?>
-    <div class="container">
-        <div class="alert alert-success" role="alert"><?= $message ?></div>
-    </div>
+<?php
+
+    $session = new \App\core\Session\Session();
+    $flash = new \App\core\Session\Flash($session);
+
+    $flash = $flash->get();
+
+    if(!empty($flash)):
+?>
+        <div class="container">
+            <div class="alert alert-<?= $flash[1] ?>" role="alert"><?= $flash[0] ?></div>
+        </div>
 <?php endif ?>
 
 <div class="container">

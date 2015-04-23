@@ -11,6 +11,8 @@ namespace App\app\Controller\Admin;
 
 use App\App\App;
 use App\core\Controller\Controller;
+use App\core\Session\Flash;
+use App\core\Session\Session;
 
 class ArticleController extends AdminBaseController{
 
@@ -33,6 +35,7 @@ class ArticleController extends AdminBaseController{
                 'categorie_id' => $_POST['categorie_id'],
             ]);
             if($result){
+                $app->getFlash()->set("L'article a bien été créé!");
                 return $this->index();
             }
         }
@@ -42,23 +45,24 @@ class ArticleController extends AdminBaseController{
         $this->render('admin.article.new', compact('categories', 'message'));
     }
 
-    public function edit()
+    public function edit($id)
     {
         $app = App::getInstance();
         $articleTable = $app->getTable('article');
         if(!empty($_POST)){
-            $result = $articleTable->updateById($_GET['id'], [
+            $result = $articleTable->updateById($id, [
                 'titre' => $_POST['titre'],
                 'contenu' => $_POST['contenu'],
                 'categorie_id' => $_POST['categorie_id'],
             ]);
 
             if($result){
-                $message = "L'article a bien été modifié!";
+                $app->getFlash()->set("L'article a bien été modifié!");
+                header('Location: /admin/article');
             }
         }
 
-        $article = $articleTable->findById($_GET['id']);
+        $article = $articleTable->findById($id);
         $categories = $app->getTable('categorie')->all();
 
         $this->render('admin.article.edit', compact('categories', 'article'));
@@ -72,6 +76,7 @@ class ArticleController extends AdminBaseController{
             $result = $articleTable->deleteById($_POST['id']);
 
             if($result){
+                $app->getFlash()->set("L'article a bien été supprimé!");
                 return $this->index();
             }
         }

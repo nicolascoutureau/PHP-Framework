@@ -22,7 +22,7 @@ class AdminBaseController extends Controller {
 
         // Auth
         $app = App::getInstance();
-        $auth = new DBAuth($app->getDb());
+        $auth = new DBAuth($app->getDb(), $app->getSession());
 
         if(!$auth->logged()) {
             header('Location: /user/login');

@@ -11,12 +11,16 @@ namespace App\App;
 
 use App\core\config;
 use App\core\Database\Database;
+use App\core\Session\Flash;
+use App\core\Session\Session;
 
 class App {
 
 
     private static $_instance;
     private $db_instance;
+    private $session_instance;
+    private $flash_instance;
 
     public static function getInstance(){
         if(is_null(self::$_instance)){
@@ -47,6 +51,23 @@ class App {
         return $this->db_instance;
     }
 
+    public function getSession()
+    {
+        if(is_null($this->session_instance)){
+            $this->session_instance = new Session();
+        }
+
+        return $this->session_instance;
+    }
+
+    public function getFlash()
+    {
+        if(is_null($this->flash_instance)){
+            $this->flash_instance = new Flash($this->getSession());
+        }
+
+        return $this->flash_instance;
+    }
 
 
 
