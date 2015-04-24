@@ -32,8 +32,21 @@ class Dispatcher {
                 $args[] = $parts[$i];
             }
         }else{
-            $ctrl = 'App\app\Controller\\'.ucfirst(!empty($parts[0])?$parts[0]:'Index').'Controller';
+            $ctrl = ucfirst(!empty($parts[0])?$parts[0]:'Index');
+
+            if(strpos($ctrl, '?') != false){
+                $ctrl = substr($ctrl, 0, strpos($ctrl, "?"));
+            }
+
+            $ctrl = 'App\app\Controller\\'. $ctrl .'Controller';
+
+
+
             $mthd = isset($parts[1])?$parts[1]:"index";
+
+            if(strpos($mthd, '?') != false){
+                $mthd = substr($mthd, 0, strpos($mthd, "?"));
+            }
 
             $args = [];
             for($i=2; $i<count($parts); $i++){

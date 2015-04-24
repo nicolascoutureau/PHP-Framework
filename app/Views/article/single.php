@@ -1,13 +1,7 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: sharewood
- * Date: 21/04/15
- * Time: 11:23
- */
+<div class="container">
+    <div class="row">
+        <h1><?= $article->titre ?></h1>
+        <p class="flow-text"><?= $article->contenu ?></p>
 
-echo '<pre>';
-var_dump($article);
-echo '</pre>';
-
-?>
+    </div>
+</div>

@@ -5,7 +5,7 @@
             <?php foreach($articles as $article): ?>
                 <h2><?= $article->titre ?></h2>
                 <small><?= $article->categorie ?></small>
-                <p><?= $article->extrait ?></p>
+                <p class="flow-text"><?= $article->extrait ?></p>
                 <a class="waves-effect waves-light btn" href="<?= $article->url ?>">Voir l'article</a>
             <?php endforeach; ?>
 

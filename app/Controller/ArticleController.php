@@ -17,6 +17,9 @@ class ArticleController extends BaseController{
 
     public function index()
     {
+        $p = isset($_GET['p']) && $_GET['p'] > 0 ? (int) $_GET['p'] : 1;
+
+        var_dump($p);
         $articles = $this->getTable('article')->last();
         $categories = $this->getTable('categorie')->all();
 
@@ -34,10 +37,11 @@ class ArticleController extends BaseController{
         }
 
         $articles = $this->getTable('article')->findLastByCategoryId($id);
+        $categories = $this->getTable('categorie')->all();
 
         $this->render(
             'article.categorie',
-            compact('categorie','articles')
+            compact('categories','categorie','articles')
         );
     }
 
