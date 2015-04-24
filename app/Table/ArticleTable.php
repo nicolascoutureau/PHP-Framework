@@ -59,4 +59,20 @@ class ArticleTable extends Table{
         ");
     }
 
+    public function paginate($p)
+    {
+        $per_page = 5;
+        $p = $per_page * ($p - 1);
+
+        return $this->query("
+            SELECT article.id, article.titre, article.contenu, article.created_at, categorie.nom As categorie
+            FROM article
+            LEFT JOIN categorie ON article.categorie_id = categorie.id
+            ORDER BY created_at DESC
+            LIMIT $per_page
+            OFFSET $p
+            "
+        );
+    }
+
 } 

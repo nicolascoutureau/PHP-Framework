@@ -19,8 +19,12 @@ class ArticleController extends BaseController{
     {
         $p = isset($_GET['p']) && $_GET['p'] > 0 ? (int) $_GET['p'] : 1;
 
-        var_dump($p);
-        $articles = $this->getTable('article')->last();
+        $articles = $this->getTable('article')->paginate($p);
+
+        if(!$articles){
+            $this->notFound();
+        }
+
         $categories = $this->getTable('categorie')->all();
 
         $this->render(

@@ -40,8 +40,6 @@ class Dispatcher {
 
             $ctrl = 'App\app\Controller\\'. $ctrl .'Controller';
 
-
-
             $mthd = isset($parts[1])?$parts[1]:"index";
 
             if(strpos($mthd, '?') != false){

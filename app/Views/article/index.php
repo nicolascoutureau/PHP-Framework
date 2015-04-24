@@ -3,6 +3,7 @@
         <div class="col s8">
             <h1>Article Index</h1>
             <?php foreach($articles as $article): ?>
+                <?= $article->id ?>
                 <h2><?= $article->titre ?></h2>
                 <small><?= $article->categorie ?></small>
                 <p class="flow-text"><?= $article->extrait ?></p>
