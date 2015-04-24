@@ -12,6 +12,7 @@ namespace App\app\Controller\Admin;
 use App\App\App;
 use App\core\Auth\DBAuth;
 use App\core\Controller\Controller;
+use App\core\DIC\DIC;
 
 class AdminBaseController extends Controller {
 
@@ -21,8 +22,7 @@ class AdminBaseController extends Controller {
         $this->layout = 'admin';
 
         // Auth
-        $app = App::getInstance();
-        $auth = new DBAuth($app->getDb(), $app->getSession());
+        $auth = $this->get('DBAuth');
 
         if(!$auth->logged()) {
             header('Location: /user/login');

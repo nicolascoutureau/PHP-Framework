@@ -11,6 +11,7 @@ namespace App\app\Controller;
 
 use App\App\App;
 use App\core\Auth\DBAuth;
+use App\core\DIC\DIC;
 
 class UserController extends BaseController {
 
@@ -22,15 +23,14 @@ class UserController extends BaseController {
 
     public function login(){
         if(!empty($_POST)){
-            $app = App::getInstance();
-            $auth = new DBAuth($app->getDb(), $app->getSession());
+            $auth = $this->get('DBAuth');
 
             if($auth->login($_POST['username'], $_POST['password'])){
-                $app->getFlash()->set('Bienvenue '. $_POST['username']);
+                $this->get('Flash')->set('Bienvenue '. $_POST['username']);
                 header('Location: /admin');
                 die();
             }else{
-                $app->getFlash()->set('Mauvais Login ou mot de passe', 'danger');
+                $this->get('Flash')->set('Mauvais Login ou mot de passe', 'danger');
             }
         }
 
@@ -39,9 +39,8 @@ class UserController extends BaseController {
 
     public function logout()
     {
-        $app = App::getInstance();
-        $app->getSession()->delete('auth');
-        $app->getFlash()->set('A bientot!');
+        $this->get('Session')->delete('auth');
+        $this->get('Flash')->set('A bientot!');
 
         header('Location: /');
         die();

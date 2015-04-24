@@ -9,6 +9,9 @@
 namespace App\core\Controller;
 
 
+use App\App\App;
+use App\core\DIC\DIC;
+
 class Controller {
 
     protected $viewPath;
@@ -41,5 +44,16 @@ class Controller {
         header('HTTP/1.0 403 Forbidden');
         header('Location:user/login');
     }
+
+    public function get($value)
+    {
+        return DIC::getInstance()->get($value);
+    }
+
+    public function getTable($value)
+    {
+        return App::getInstance()->getTable($value);
+    }
+
 
 } 

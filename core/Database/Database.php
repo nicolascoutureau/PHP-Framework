@@ -16,6 +16,7 @@ class Database {
     private $db_password;
     private $db_host;
     private $pdo;
+    private $uniqid;
 
     public function __construct($db_name, $db_user, $db_password, $db_host)
     {
@@ -23,6 +24,7 @@ class Database {
         $this->db_user = $db_user;
         $this->db_password = $db_password;
         $this->db_host = $db_host;
+        $this->uniqid = uniqid();
     }
 
     private function getPDO()

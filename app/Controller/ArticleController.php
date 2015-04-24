@@ -10,15 +10,15 @@ namespace App\app\Controller;
 
 
 use App\App\App;
+use App\core\DIC\DIC;
 
 class ArticleController extends BaseController{
 
 
     public function index()
     {
-        $app = APP::getInstance();
-        $articles = $app->getTable('article')->last();
-        $categories = $app->getTable('categorie')->all();
+        $articles = $this->getTable('article')->last();
+        $categories = $this->getTable('categorie')->all();
 
         $this->render(
             'article.index',
@@ -28,14 +28,12 @@ class ArticleController extends BaseController{
 
     public function categorie($id)
     {
-        $app = App::getInstance();
-
-        $categorie = $app->getTable('categorie')->findById($id);
+        $categorie = $this->getTable('categorie')->findById($id);
         if(!$categorie){
             $this->notFound();
         }
 
-        $articles = $app->getTable('article')->findLastByCategoryId($id);
+        $articles = $this->getTable('article')->findLastByCategoryId($id);
 
         $this->render(
             'article.categorie',
@@ -45,8 +43,7 @@ class ArticleController extends BaseController{
 
     public function show($id)
     {
-        $app = APP::getInstance();
-        $article = $app->getTable('article')->findById($id);
+        $article = $this->getTable('article')->findById($id);
         if($article === false){
             $this->notFound();
         }

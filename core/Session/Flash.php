@@ -15,10 +15,12 @@ class Flash {
      * @var SessionInterface
      */
     private $session;
+    private $uniqid;
 
     public function __construct(SessionInterface $session)
     {
         $this->session = $session;
+        $this->uniqid = uniqid();
     }
 
     public function set($message, $type = 'success')
