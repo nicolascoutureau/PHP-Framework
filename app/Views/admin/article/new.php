@@ -1,6 +1,6 @@
 <h2>Ajouter un article</h2>
 
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     <div class="form-group">
         <label for="titre">Titre</label>
         <input  type="text" name="titre" class="form-control"/>
@@ -16,6 +16,10 @@
                 <option value="<?= $categorie->id ?>"><?= $categorie->nom ?></option>
             <?php endforeach ?>
         </select>
+    </div>
+    <div class="form-group">
+        <label for="image">Image</label>
+        <input type="file" name="image"/>
     </div>
     <button type="submit" class="btn btn-primary">Modifier</button>
 </form>

@@ -28,10 +28,25 @@ class ArticleController extends AdminBaseController{
         $articleTable = $this->getTable('article');
 
         if(!empty($_POST)){
+
+            if ($_FILES['image']['error'] > 0){
+                $this->get('Flash')->set("Erreur lors du transfert");
+                return $this->add();
+            }
+
+            if(!in_array($_FILES['image']['type'], ['image/png', 'image/jpg', 'image/jpeg'])){
+                $this->get('Flash')->set("Mauvais format de fichier");
+                return $this->add();
+            }
+
+            $path = ROOT .'/public/images/article/';
+            $resultat = move_uploaded_file($_FILES['image']['tmp_name'],$path.$_FILES['image']['name']);
+
             $result = $articleTable->create([
                 'titre' => $_POST['titre'],
                 'contenu' => $_POST['contenu'],
                 'categorie_id' => $_POST['categorie_id'],
+                'image' => $_FILES['image']['name']
             ]);
             if($result){
                 $this->get('Flash')->set("L'article a bien été créé!");
@@ -48,11 +63,31 @@ class ArticleController extends AdminBaseController{
     {
         $articleTable = $this->getTable('article');
         if(!empty($_POST)){
-            $result = $articleTable->updateById($id, [
+            if ($_FILES['image']['error'] > 0){
+                $this->get('Flash')->set("Erreur lors du transfert");
+            }
+
+            if(!in_array($_FILES['image']['type'], ['image/png', 'image/jpg', 'image/jpeg'])){
+                $this->get('Flash')->set("Mauvais format de fichier");
+            }
+
+            $path = ROOT .'/public/images/article/';
+            $resultat = move_uploaded_file($_FILES['image']['tmp_name'],$path.$_FILES['image']['name']);
+            if ($resultat){
+                $this->get('Flash')->set("Transfert réussi");
+            }
+
+            $fields = [
                 'titre' => $_POST['titre'],
                 'contenu' => $_POST['contenu'],
                 'categorie_id' => $_POST['categorie_id'],
-            ]);
+            ];
+
+            if($_FILES["image"]["error"] === UPLOAD_ERR_OK){
+                $fields['image'] = $_FILES['image']['name'];
+            }
+
+            $result = $articleTable->updateById($id, $fields);
 
             if($result){
                 $this->get('Flash')->set("L'article a bien été modifié!");

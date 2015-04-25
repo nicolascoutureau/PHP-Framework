@@ -13,6 +13,8 @@ use App\core\Entity\Entity;
 
 class ArticleEntity extends Entity{
 
+    Const IMAGEPATH = '/images/article/';
+
     public function getUrl()
     {
         return "/article/show/$this->id";
@@ -21,6 +23,11 @@ class ArticleEntity extends Entity{
     public function getExtrait($length=100)
     {
         return substr($this->contenu,0,$length).'...';
+    }
+
+    public function getImagepath()
+    {
+        return self::IMAGEPATH.$this->image;
     }
 
 

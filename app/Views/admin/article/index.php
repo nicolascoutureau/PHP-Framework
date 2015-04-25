@@ -9,6 +9,7 @@
     <tr>
         <td>Id</td>
         <td>Titre</td>
+        <td>Image</td>
         <td>Catégorie</td>
         <td>Actions</td>
     </tr>
@@ -18,6 +19,7 @@
             <tr>
                 <td><?= $article->id ?></td>
                 <td><?= $article->titre ?></td>
+                <td><img class="img-responsive" style="width: 100px" src="<?= $article->imagePath ?>"/></td>
                 <td><?= $article->categorie ?></td>
                 <td>
                     <a class="btn btn-primary" href="/admin/article/edit/<?= $article->id ?>">Éditer</a>

@@ -5,6 +5,7 @@
             <?php foreach($articles as $article): ?>
                 <?= $article->id ?>
                 <h2><?= $article->titre ?></h2>
+                <img class="responsive-img" src="<?= $article->imagePath ?>" alt="<?= $article->titre ?>"/>
                 <small><?= $article->categorie ?></small>
                 <p class="flow-text"><?= $article->extrait ?></p>
                 <a class="waves-effect waves-light btn" href="<?= $article->url ?>">Voir l'article</a>
