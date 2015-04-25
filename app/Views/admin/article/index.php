@@ -9,6 +9,7 @@
     <tr>
         <td>Id</td>
         <td>Titre</td>
+        <td>Slug</td>
         <td>Image</td>
         <td>Catégorie</td>
         <td>Actions</td>
@@ -19,6 +20,7 @@
             <tr>
                 <td><?= $article->id ?></td>
                 <td><?= $article->titre ?></td>
+                <td><?= $article->slug ?></td>
                 <td><img class="img-responsive" style="width: 100px" src="<?= $article->imagePath ?>"/></td>
                 <td><?= $article->categorie ?></td>
                 <td>

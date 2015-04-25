@@ -15,6 +15,7 @@ use App\core\Database\Database;
 use App\core\DIC\DIC;
 use App\core\Session\Flash;
 use App\core\Session\Session;
+use App\Core\Tools\Slug;
 
 class App {
 
@@ -62,6 +63,10 @@ class App {
 
         $container->set('DBAuth', function() use ($container){
             return new DBAuth($container->get('Database'), $container->get('Session'));
+        });
+
+        $container->set('Slug', function() use ($container){
+            return new Slug($container->get('Database'));
         });
     }
 
